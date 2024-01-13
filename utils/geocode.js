@@ -73,8 +73,7 @@ const addresses = [
   "1, Sky Garden, Sky Garden Walk, London EC3M 8AF, UK",
 ];
 
-const geocodeAccessToken =
-  "pk.eyJ1IjoiY2NvdXR0czIiLCJhIjoiY2xyYzZpYzdsMHNxNjJrbnh2Y3Q1Z2hqNSJ9.l7RhwOay73GRX7gL5UBUMw";
+const geocodeAccessToken = "X";
 
 const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 
