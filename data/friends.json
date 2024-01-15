@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Aly",
+    "homeAddress": {
+      "latitude": 51.5074,
+      "longitude": -0.1278
+    },
+    "favouriteDrink": "IPA"
+  },
+  {
+    "id": 2,
+    "name": "Andy",
+    "homeAddress": {
+      "latitude": 51.5081,
+      "longitude": -0.1281
+    },
+    "favouriteDrink": "Pale Ale"
+  },
+  {
+    "id": 3,
+    "name": "Euan",
+    "homeAddress": {
+      "latitude": 51.5093,
+      "longitude": -0.1277
+    },
+    "favouriteDrink": "IPA"
+  },
+  {
+    "id": 4,
+    "name": "Ben",
+    "homeAddress": {
+      "latitude": 51.5111,
+      "longitude": -0.128
+    },
+    "favouriteDrink": "Pale Ale"
+  },
+  {
+    "id": 5,
+    "name": "Andrew",
+    "homeAddress": {
+      "latitude": 51.5099,
+      "longitude": -0.1335
+    },
+    "favouriteDrink": "IPA"
+  },
+  {
+    "id": 6,
+    "name": "Natasha",
+    "homeAddress": {
+      "latitude": 51.5102,
+      "longitude": -0.1305
+    },
+    "favouriteDrink": "Pale Ale"
+  }
+]

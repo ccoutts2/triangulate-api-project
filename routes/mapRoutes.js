@@ -6,7 +6,7 @@ const crypto = require("crypto");
 
 // GET /maps
 
-router.get("/", (req, res) => {
+router.get("/meet", (req, res) => {
   const pubsFile = fs.readFileSync("./data/pubs.json");
   const pubs = JSON.parse(pubsFile);
 
@@ -16,12 +16,23 @@ router.get("/", (req, res) => {
     address: pub.address,
   }));
 
+  const friendsFile = fs.readFileSync("./data/friends.json");
+  const friends = JSON.parse(friendsFile);
+
+  const friendsList = friends.map((friend) => ({
+    id: friend.id,
+    name: friend.name,
+    homeAddress: friend.address,
+    favouriteDrink: friend.favouriteDrink,
+  }));
+
   res.json(pubList);
+  res.json(friendsList);
 });
 
 // POST /maps
 
-router.post("/", (req, res) => {
+router.post("/meet", (req, res) => {
   // const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
   // // const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
