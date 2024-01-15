@@ -6,7 +6,7 @@ const crypto = require("crypto");
 
 // GET /maps
 
-router.get("/meet", (req, res) => {
+router.get("/", (req, res) => {
   const pubsFile = fs.readFileSync("./data/pubs.json");
   const pubs = JSON.parse(pubsFile);
 
@@ -16,41 +16,31 @@ router.get("/meet", (req, res) => {
     address: pub.address,
   }));
 
-  const friendsFile = fs.readFileSync("./data/friends.json");
-  const friends = JSON.parse(friendsFile);
-
-  const friendsList = friends.map((friend) => ({
-    id: friend.id,
-    name: friend.name,
-    homeAddress: friend.address,
-    favouriteDrink: friend.favouriteDrink,
-  }));
-
   res.json(pubList);
-  res.json(friendsList);
+  console.log(pubList);
 });
 
-// POST /maps
+// POST / maps;
 
-router.post("/meet", (req, res) => {
-  // const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-  // // const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
+router.post("/", (req, res) => {
+  const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+  const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
-  // const geocodeAddress = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${geoForwardUrl}${encodeURIComponent(
-  //         address
-  //       )}.json?access_token=${accessToken}`
-  //     );
+  const geocodeAddress = async () => {
+    try {
+      const response = await axios.get(
+        `${geoForwardUrl}${encodeURIComponent(
+          address
+        )}.json?access_token=${accessToken}`
+      );
 
-  //     const coordinates = response.data.features[0].geometry.coordinates;
-  //   } catch (error) {
-  //     console.error(`Error geocoding ${address}: ${error.message}`);
-  //   }
-  // };
+      const coordinates = response.data.features[0].geometry.coordinates;
+    } catch (error) {
+      console.error(`Error geocoding ${address}: ${error.message}`);
+    }
+  };
 
-  // geocodeAddress();
+  geocodeAddress();
 
   const newPub = {
     id: crypto.randomUUID(),
@@ -66,7 +56,7 @@ router.post("/meet", (req, res) => {
 
   pubData.push(newPub);
 
-  fs.writeFileSync("./data/pub.json", JSON.stringify(pubData));
+  fs.writeFileSync("./data/pubs.json", JSON.stringify(pubData));
 
   res.status(201).json(pubData);
 });
