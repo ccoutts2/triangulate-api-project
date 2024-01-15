@@ -73,17 +73,16 @@ const addresses = [
   "1, Sky Garden, Sky Garden Walk, London EC3M 8AF, UK",
 ];
 
-const geocodeAccessToken = "X";
-
 const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
 const geocodeAddress = async () => {
   for (const address of addresses) {
     try {
       const response = await axios.get(
-        `${geoForwardUrl}/${encodeURIComponent(
+        `${geoForwardUrl}${encodeURIComponent(
           address
-        )}.json?access_token=${geocodeAccessToken}`
+        )}.json?access_token=${accessToken}`
       );
 
       const coordinates = response.data.features[0].geometry.coordinates;
