@@ -4,23 +4,17 @@ const fs = require("fs");
 const cors = require("cors");
 const crypto = require("crypto");
 
-// GET /maps
+// GET /pubs
 
 router.get("/", (req, res) => {
-  const pubsFile = fs.readFileSync("./data/pubs.json");
+  const pubsFile = fs.readFileSync("./data/pubsgeo.json");
   const pubs = JSON.parse(pubsFile);
 
-  const pubList = pubs.map((pub) => ({
-    id: pub.id,
-    pub: pub.pub,
-    address: pub.address,
-  }));
-
-  res.json(pubList);
-  console.log(pubList);
+  res.json(pubs);
+  console.log(pubs);
 });
 
-// POST / maps;
+// POST / pubs;
 
 router.post("/", (req, res) => {
   const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
@@ -52,7 +46,7 @@ router.post("/", (req, res) => {
     return res.status(400).json({ error: "Please provide a pub id" });
   }
 
-  const pubData = JSON.parse(fs.readFileSync("./data/pubs.json"));
+  const pubData = JSON.parse(fs.readFileSync("./data/pubsgeo.json"));
 
   pubData.push(newPub);
 
