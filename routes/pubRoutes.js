@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const cors = require("cors");
 const crypto = require("crypto");
+const axios = require("axios");
 
 // GET /pubs
 
@@ -16,41 +17,54 @@ router.get("/", (req, res) => {
 
 // POST / pubs;
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
   const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
-
+  let findCoordinates = [];
   const geocodeAddress = async () => {
     try {
       const response = await axios.get(
         `${geoForwardUrl}${encodeURIComponent(
-          address
+          req.body.address
         )}.json?access_token=${accessToken}`
       );
-
       const coordinates = response.data.features[0].geometry.coordinates;
+      console.log(coordinates);
+      // console.log(`${address}: ${coordinates[1]}, ${coordinates[0]}`);
+      findCoordinates = [coordinates[0], coordinates[1]];
     } catch (error) {
-      console.error(`Error geocoding ${address}: ${error.message}`);
+      console.error(`Error geocodin: ${error.message}`);
     }
   };
 
-  geocodeAddress();
+  const foundAddress = await geocodeAddress();
+  console.log(findCoordinates);
 
   const newPub = {
-    id: crypto.randomUUID(),
-    pub: req.body.pub,
-    address: req.body.address,
+    type: "Feature",
+    geometry: {
+      type: "Point",
+      coordinates: findCoordinates,
+    },
+    properties: {
+      id: crypto.randomUUID(),
+      pub: req.body.pub,
+      address: req.body.address,
+      rating: req.body.rating,
+    },
   };
 
-  if (!newPub.id) {
-    return res.status(400).json({ error: "Please provide a pub id" });
+  if (!newPub.properties.pub || !newPub.properties.address) {
+    return res
+      .status(400)
+      .json({ error: "Please provide all required pub information" });
   }
 
   const pubData = JSON.parse(fs.readFileSync("./data/pubsgeo.json"));
 
-  pubData.push(newPub);
+  pubData.features.push(newPub);
 
-  fs.writeFileSync("./data/pubs.json", JSON.stringify(pubData));
+  fs.writeFileSync("./data/pubsgeo.json", JSON.stringify(pubData));
 
   res.status(201).json(pubData);
 });

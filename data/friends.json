@@ -3,8 +3,8 @@
     "id": 1,
     "name": "Aly",
     "homeAddress": {
-      "latitude": 51.5074,
-      "longitude": -0.1278
+      "latitude": 51.51189,
+      "longitude": -0.05947
     },
     "favouriteDrink": "IPA"
   },
@@ -12,8 +12,8 @@
     "id": 2,
     "name": "Andy",
     "homeAddress": {
-      "latitude": 51.5081,
-      "longitude": -0.1281
+      "latitude": 51.5542,
+      "longitude": -0.1065
     },
     "favouriteDrink": "Pale Ale"
   },
@@ -21,8 +21,8 @@
     "id": 3,
     "name": "Euan",
     "homeAddress": {
-      "latitude": 51.5093,
-      "longitude": -0.1277
+      "latitude": 51.50697,
+      "longitude": -0.09251
     },
     "favouriteDrink": "IPA"
   },
@@ -30,8 +30,8 @@
     "id": 4,
     "name": "Ben",
     "homeAddress": {
-      "latitude": 51.5111,
-      "longitude": -0.128
+      "latitude": 51.5449,
+      "longitude": -0.087
     },
     "favouriteDrink": "Pale Ale"
   },
@@ -39,17 +39,27 @@
     "id": 5,
     "name": "Andrew",
     "homeAddress": {
-      "latitude": 51.5099,
-      "longitude": -0.1335
+      "latitude": 51.5342,
+      "longitude": -0.1034
     },
     "favouriteDrink": "IPA"
   },
+
   {
     "id": 6,
+    "name": "Afyq",
+    "homeAddress": {
+      "latitude": 51.5569,
+      "longitude": -0.0868
+    },
+    "favouriteDrink": "Cider"
+  },
+  {
+    "id": 7,
     "name": "Natasha",
     "homeAddress": {
-      "latitude": 51.5102,
-      "longitude": -0.1305
+      "latitude": 51.5305,
+      "longitude": -0.0847
     },
     "favouriteDrink": "Pale Ale"
   }

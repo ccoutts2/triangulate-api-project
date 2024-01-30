@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const { PORT, BACKEND_URL } = process.env;
 
-const mapRoutes = require("./routes/pubRoutes");
+const pubRoutes = require("./routes/pubRoutes");
 
 const friendRoutes = require("./routes/friendRoutes");
 
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/pubs", mapRoutes);
+app.use("/pubs", pubRoutes);
 app.use("/friends", friendRoutes);
 
 // const axios = require("axios");
