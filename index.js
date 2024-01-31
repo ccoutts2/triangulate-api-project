@@ -8,6 +8,8 @@ const pubRoutes = require("./routes/pubRoutes");
 
 const friendRoutes = require("./routes/friendRoutes");
 
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 
 app.use(cors());
@@ -22,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use("/pubs", pubRoutes);
 app.use("/friends", friendRoutes);
+app.use("/api/users", userRoutes);
 
 // const axios = require("axios");
 // const addresses = [
