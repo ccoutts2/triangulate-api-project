@@ -310,6 +310,66 @@
         "address": "178 Hoxton St, London N1 5LH, UK",
         "rating": 32
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.043285, 51.548419] },
+      "properties": {
+        "id": "647449c6-9a71-4226-8b0a-3dd2229d135e",
+        "pub": "Wonderful Pub",
+        "address": "110 Homerton High St, London E9 6AS, UK",
+        "rating": 42
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.04134, 51.54887] },
+      "properties": {
+        "id": "0100e1e2-a56a-4d18-9191-e61863e2127e",
+        "pub": "Wonderful Pub",
+        "address": "135 Homerton High St, London E9 6AS, UK",
+        "rating": 34
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.01835, 51.58768] },
+      "properties": {
+        "id": "cf24a520-bdae-44c7-97fc-c726200236c2",
+        "pub": "28THR",
+        "address": "28 Tower Hamlets Road, E17 4RH",
+        "rating": 50
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.01876, 51.58787] },
+      "properties": {
+        "id": "9fd82be8-61c0-4604-89ab-032eb3433421",
+        "pub": "Wonderful Pub",
+        "address": "29 Tower Hamlets Road, E17 4RH",
+        "rating": 34
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.04793, 51.47586] },
+      "properties": {
+        "id": "b8010533-7a69-4ceb-aa8e-8fcd23dbbe1f",
+        "pub": "Old Watering Hole",
+        "address": "128 New Cross Road, London",
+        "rating": 44
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.30291, 51.12886] },
+      "properties": {
+        "id": "7b925346-f89a-43be-8710-ca8ef98fb733",
+        "pub": "30 Tower Hamlets Road",
+        "address": "30 Tower Hamlets Road",
+        "rating": 50
+      }
     }
   ]
 }

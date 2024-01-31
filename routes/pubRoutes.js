@@ -29,8 +29,6 @@ router.post("/", async (req, res) => {
         )}.json?access_token=${accessToken}`
       );
       const coordinates = response.data.features[0].geometry.coordinates;
-      console.log(coordinates);
-      // console.log(`${address}: ${coordinates[1]}, ${coordinates[0]}`);
       findCoordinates = [coordinates[0], coordinates[1]];
     } catch (error) {
       console.error(`Error geocodin: ${error.message}`);
