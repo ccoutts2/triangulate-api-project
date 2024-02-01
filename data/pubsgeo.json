@@ -370,6 +370,16 @@
         "address": "30 Tower Hamlets Road",
         "rating": 50
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [0.01736, 51.54944] },
+      "properties": {
+        "id": "3004af65-1901-4951-9dc2-9ef3302cc136",
+        "pub": "Cool pub",
+        "address": "30 Tower Hamlets Road, London",
+        "rating": 44
+      }
     }
   ]
 }

@@ -1,11 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const fs = require("fs");
-const cors = require("cors");
-const crypto = require("crypto");
-const axios = require("axios");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const express = require("express");
+// const router = express.Router();
+// const fs = require("fs");
+// const cors = require("cors");
+// const crypto = require("crypto");
+// const axios = require("axios");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
 
 // router.post("/register", async(req, res) => {
 //     const {user_name, address, email, password} = req.body;
