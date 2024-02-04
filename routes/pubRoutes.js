@@ -53,9 +53,7 @@ router.post("/", async (req, res) => {
   };
 
   if (!newPub.properties.pub || !newPub.properties.address) {
-    return res
-      .status(400)
-      .json({ error: "Please provide all required pub information" });
+    return res.status(400).send("Please enter the required fields");
   }
 
   const pubData = JSON.parse(fs.readFileSync("./data/pubsgeo.json"));
