@@ -7,6 +7,7 @@ exports.seed = async function (knex) {
   await knex("pubs").del();
   await knex("pubs").insert([
     {
+      id: 1,
       pub: "Adam and Eve",
       address: "155 Homerton High St, London E9 6AS, UK",
       latitude: 51.54893,
@@ -14,6 +15,7 @@ exports.seed = async function (knex) {
       rating: 32,
     },
     {
+      id: 2,
       pub: "The Anchor",
       address: "34 Park St, London SE1 9EF, UK",
       latitude: 51.51595,
@@ -21,6 +23,7 @@ exports.seed = async function (knex) {
       rating: 44,
     },
     {
+      id: 3,
       pub: "Trafalgar Tavern",
       address: "Park Row, London SE10 9NW, UK",
       latitude: 51.48231,
@@ -28,6 +31,7 @@ exports.seed = async function (knex) {
       rating: 40,
     },
     {
+      id: 4,
       pub: "Clissold Park Tavern",
       address: "15a Church St, London N16 0NX, UK",
       latitude: 51.55781,
@@ -35,6 +39,7 @@ exports.seed = async function (knex) {
       rating: 49,
     },
     {
+      id: 5,
       pub: "Faltering Fullback",
       address: "19 Perth Rd, Finsbury Park, London N4 3HB, UK",
       latitude: 51.56847,
@@ -42,6 +47,7 @@ exports.seed = async function (knex) {
       rating: 34,
     },
     {
+      id: 6,
       pub: "Dickens Inn",
       address: "15a Church St, London N16 0NX, UK",
       latitude: 51.50644,
@@ -49,6 +55,7 @@ exports.seed = async function (knex) {
       rating: 29,
     },
     {
+      id: 7,
       pub: "The Hanbury Arms",
       address: "146 Canonbury Rd, London N1 2DG, UK",
       latitude: 51.53621,
@@ -56,6 +63,7 @@ exports.seed = async function (knex) {
       rating: 41,
     },
     {
+      id: 8,
       pub: "The Hunter S",
       address: "34 Park St, London SE1 9EF, UK",
       latitude: 51.54596,
@@ -63,6 +71,7 @@ exports.seed = async function (knex) {
       rating: 38,
     },
     {
+      id: 9,
       pub: "Captain Kidd",
       address: "30-34 Cumberland St, London SW1V 4LT, UK",
       latitude: 51.50332,
@@ -70,6 +79,7 @@ exports.seed = async function (knex) {
       rating: 30,
     },
     {
+      id: 10,
       pub: "Lincoln Arms",
       address: "52 York Wy, London N1 9AB, UK",
       latitude: 51.54208,
@@ -77,6 +87,7 @@ exports.seed = async function (knex) {
       rating: 49,
     },
     {
+      id: 11,
       pub: "The Penton",
       address: "54 Pentonville Rd, London N1 9HF, UK",
       latitude: 51.53205,
@@ -84,6 +95,7 @@ exports.seed = async function (knex) {
       rating: 33,
     },
     {
+      id: 12,
       pub: "The Kenton",
       address: "1 Kitto Rd, London SE14 5TW, UK",
       latitude: 51.46756,
@@ -91,6 +103,7 @@ exports.seed = async function (knex) {
       rating: 46,
     },
     {
+      id: 13,
       pub: "The George & Vulture",
       address: "84-86 Essex Rd, London N1 8LU, UK",
       latitude: 51.53843,
@@ -98,6 +111,7 @@ exports.seed = async function (knex) {
       rating: 38,
     },
     {
+      id: 14,
       pub: "The Hoxton",
       address: "178 Hoxton St, London N1 5LH, UK",
       latitude: 51.53308,
@@ -105,6 +119,7 @@ exports.seed = async function (knex) {
       rating: 31,
     },
     {
+      id: 15,
       pub: "The Cambria",
       address: "35 Denmark Hill, London SE5 8RS, UK",
       latitude: 51.47239,
@@ -112,6 +127,7 @@ exports.seed = async function (knex) {
       rating: 49,
     },
     {
+      id: 16,
       pub: "The Auld Shillelagh",
       address: "105 Stoke Newington Church St, London N16 0UD, UK",
       latitude: 51.56189,
@@ -119,6 +135,7 @@ exports.seed = async function (knex) {
       rating: 47,
     },
     {
+      id: 17,
       pub: "The Compton Arms",
       address: "4 Compton Ave, London N1 2XD, UK",
       latitude: 51.54369,
@@ -126,6 +143,7 @@ exports.seed = async function (knex) {
       rating: 36,
     },
     {
+      id: 18,
       pub: "The Three Crowns",
       address: "121 Stoke Newington Rd, London N16 8BT, UK",
       latitude: 51.55593,
@@ -133,6 +151,7 @@ exports.seed = async function (knex) {
       rating: 38,
     },
     {
+      id: 19,
       pub: "The Hunter S",
       address: "34 Park St, London SE1 9EF, UK",
       latitude: 51.50697,
@@ -140,6 +159,7 @@ exports.seed = async function (knex) {
       rating: 29,
     },
     {
+      id: 20,
       pub: "The Wenlock Arms",
       address: "13 Liverpool Rd, London N1 0RW, UK",
       latitude: 51.53374,
@@ -147,6 +167,7 @@ exports.seed = async function (knex) {
       rating: 48,
     },
     {
+      id: 21,
       pub: "The Coronet",
       address: "98-102 Holloway Rd, London N7 8JE, UK",
       latitude: 51.55008,
@@ -154,6 +175,7 @@ exports.seed = async function (knex) {
       rating: 28,
     },
     {
+      id: 22,
       pub: "The Beehive",
       address: "45 Harrowby St, London W1H 5HT, UK",
       latitude: 51.51754,
@@ -161,6 +183,7 @@ exports.seed = async function (knex) {
       rating: 30,
     },
     {
+      id: 23,
       pub: "The Spread Eagle",
       address: "94-96 Wandsworth High St, London SW18 4LB, UK",
       latitude: 51.45737,
@@ -168,6 +191,7 @@ exports.seed = async function (knex) {
       rating: 38,
     },
     {
+      id: 24,
       pub: "The Jolly Gardeners",
       address: "70 Landor Rd, London SW9 9PH, UK",
       latitude: 51.46566,
@@ -175,6 +199,7 @@ exports.seed = async function (knex) {
       rating: 49,
     },
     {
+      id: 25,
       pub: "The Alma",
       address: "83 St Paul's Rd, Greater, London N1 2LY, UK",
       latitude: 51.54656,
@@ -182,6 +207,7 @@ exports.seed = async function (knex) {
       rating: 32,
     },
     {
+      id: 26,
       pub: "The Sekforde Arms",
       address: "125 Saffron Hill, London EC1N 8QS, UK",
       latitude: 51.51974,
@@ -189,6 +215,7 @@ exports.seed = async function (knex) {
       rating: 30,
     },
     {
+      id: 27,
       pub: "The Old Blue Last",
       address: "123 Shoreditch High St, London E1 6JE, UK",
       latitude: 51.52705,
@@ -196,6 +223,7 @@ exports.seed = async function (knex) {
       rating: 45,
     },
     {
+      id: 28,
       pub: "The Punch Bowl",
       address: "10 Stafford St, Greater, London W1S 4RX, UK",
       latitude: 51.50868,
@@ -203,6 +231,7 @@ exports.seed = async function (knex) {
       rating: 47,
     },
     {
+      id: 29,
       pub: "The Regent",
       address: "77 Bedford Hill, London SW12 9HD, UK",
       latitude: 51.44271,
@@ -210,6 +239,7 @@ exports.seed = async function (knex) {
       rating: 28,
     },
     {
+      id: 30,
       pub: "The Ship",
       address: "68 Borough Rd, London SE1 1DX, UK",
       latitude: 51.52007,
@@ -217,6 +247,7 @@ exports.seed = async function (knex) {
       rating: 37,
     },
     {
+      id: 31,
       pub: "Howl at The Moon",
       address: "178 Hoxton St, London N1 5LH, UK",
       latitude: 51.53308,

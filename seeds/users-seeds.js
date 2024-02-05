@@ -7,6 +7,7 @@ exports.seed = async function (knex) {
   await knex("user").del();
   await knex("user").insert([
     {
+      id: 1,
       user_name: "Aly",
       address: "122 Chapman Street, Tower Hamlets, London, E1 2PH, United Kingdom",
       email: "aly@example.com",
@@ -14,6 +15,7 @@ exports.seed = async function (knex) {
       role: "user",
     },
     {
+      id: 2,
       user_name: "Andy",
       address: "The Danny Fiszman Bridge, London, England N7 7EZ, United Kingdom",
       email: "andy@example.com",
@@ -21,6 +23,7 @@ exports.seed = async function (knex) {
       role: "user",
     },
     {
+      id: 3,
       user_name: "Euan",
       address: "1 Bank End, Southwark, London, SE1 9BU, United Kingdom",
       email: "euan@example.com",
@@ -28,6 +31,7 @@ exports.seed = async function (knex) {
       role: "user",
     },
     {
+      id: 4,
       user_name: "Ben",
       address: "26 Mitchison Road, Islington, London, N1 3NG, United Kingdom",
       email: "ben@example.com",
@@ -35,6 +39,7 @@ exports.seed = async function (knex) {
       role: "user",
     },
     {
+      id: 5,
       user_name: "Andrew",
       address: "40 Duncan Terrace, Islington, London, N1 8AL, United Kingdom",
       email: "andrew@example.com",
@@ -42,6 +47,7 @@ exports.seed = async function (knex) {
       role: "user",
     },
     {
+      id: 6,
       user_name: "Afyq",
       address: "75 Clissold Crescent, Hackney, London, N16 9AR, United Kingdom",
       email: "afyq@example.com",
@@ -49,6 +55,7 @@ exports.seed = async function (knex) {
       role: "user",
     },
     {
+      id: 7,
       user_name: "Natasha",
       address: "11 New North Road, Hackney, London, N1 6JB, United Kingdom",
       email: "natasha@example.com",
