@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
   };
 
   const foundAddress = await geocodeAddress();
-  console.log(findCoordinates);
 
   const newPub = {
     type: "Feature",

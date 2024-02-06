@@ -5,8 +5,18 @@
 exports.up = function (knex) {
   return knex.schema.createTable("pub_group", (table) => {
     table.increments("id").primary();
-    table.integer("group_id").references("id").inTable("group").notNullable();
-    table.integer("pub_id").references("id").inTable("pubs").notNullable();
+    table
+      .integer("pubs_id")
+      .unsigned()
+      .references("pubs.id")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
+    table
+      .integer("group_id")
+      .unsigned()
+      .references("group.id")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
     table
       .timestamp("updated_at")
       .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
