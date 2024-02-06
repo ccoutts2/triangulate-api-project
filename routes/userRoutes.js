@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 const knex = require("knex")(require("../knexfile"));
 
 router.post("/signup", async (req, res) => {
-  const { user_name, address, email, password } = req.body;
+  const { user_name, address, email, favourite_drink, password } = req.body;
 
-  if (!user_name || !address || !email || !password) {
+  if (!user_name || !address || !email || !favourite_drink || !password) {
     return res.status(400).send("Please enter the required fields.");
   }
 
@@ -17,6 +17,7 @@ router.post("/signup", async (req, res) => {
     user_name,
     address,
     email,
+    favourite_drink,
     role: "user",
     password: hashedPassword,
   };

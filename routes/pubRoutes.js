@@ -4,15 +4,36 @@ const fs = require("fs");
 const cors = require("cors");
 const crypto = require("crypto");
 const axios = require("axios");
+const knex = require("knex")(require("../knexfile"));
 
 // GET /pubs
 
-router.get("/", (req, res) => {
-  const pubsFile = fs.readFileSync("./data/pubsgeo.json");
-  const pubs = JSON.parse(pubsFile);
+router.get("/", async (req, res) => {
+  try {
+    const pubsData = await knex("pubs");
 
-  res.json(pubs);
-  console.log(pubs);
+    let pubsGeo = { type: "FeatureCollection" };
+    pubsGeo.features = [];
+
+    pubsData.forEach((pub) => {
+      const feature = {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [pub.longitude, pub.latitude] },
+        properties: {
+          id: pub.id,
+          pub: pub.pub,
+          address: pub.address,
+          rating: pub.rating,
+        },
+      };
+
+      pubsGeo.features.push(feature);
+    });
+
+    res.status(200).json(pubsGeo);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // POST / pubs;
@@ -31,11 +52,19 @@ router.post("/", async (req, res) => {
       const coordinates = response.data.features[0].geometry.coordinates;
       findCoordinates = [coordinates[0], coordinates[1]];
     } catch (error) {
-      console.error(`Error geocodin: ${error.message}`);
+      console.error(`Error geocoding: ${error.message}`);
     }
   };
 
   const foundAddress = await geocodeAddress();
+
+  const insertedPub = await knex("pubs").insert({
+    pub: req.body.pub,
+    address: req.body.address,
+    latitude: findCoordinates[1],
+    longitude: findCoordinates[0],
+    rating: req.body.rating,
+  });
 
   const newPub = {
     type: "Feature",
@@ -44,7 +73,7 @@ router.post("/", async (req, res) => {
       coordinates: findCoordinates,
     },
     properties: {
-      id: crypto.randomUUID(),
+      id: insertedPub[0].id,
       pub: req.body.pub,
       address: req.body.address,
       rating: req.body.rating,
@@ -55,13 +84,7 @@ router.post("/", async (req, res) => {
     return res.status(400).send("Please enter the required fields");
   }
 
-  const pubData = JSON.parse(fs.readFileSync("./data/pubsgeo.json"));
-
-  pubData.features.push(newPub);
-
-  fs.writeFileSync("./data/pubsgeo.json", JSON.stringify(pubData));
-
-  res.status(201).json(pubData);
+  res.status(201).json(newPub);
 });
 
 module.exports = router;

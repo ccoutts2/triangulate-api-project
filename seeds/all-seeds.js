@@ -1,9 +1,9 @@
 // import seed data files, arrays of objects
-const pubsData = require("../seed-data/pubs-seeds");
-const groupsData = require("../seed-data/group-seeds");
-const usersData = require("../seed-data/users-seeds");
-const userGroupsData = require("../seed-data/user-group-seeds");
-const pubGroupData = require("../seed-data/pub-group-seeds");
+const usersData = require("../seed-data/1-users-seeds");
+const pubsData = require("../seed-data/2-pubs-seeds");
+const groupsData = require("../seed-data/3-group-seeds");
+const pubGroupData = require("../seed-data/4-pub-group-seeds");
+const userGroupsData = require("../seed-data/5-user-group-seeds");
 
 exports.seed = async function (knex) {
   await knex("user_group").del();

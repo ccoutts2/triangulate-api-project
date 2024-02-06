@@ -6,6 +6,7 @@ module.exports = [
     email: "aly@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Gavi",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ module.exports = [
     email: "andy@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Neck Oil",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ module.exports = [
     email: "euan@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Amstel",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ module.exports = [
     email: "ben@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Buckfast",
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ module.exports = [
     email: "andrew@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Doombar",
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ module.exports = [
     email: "afyq@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Magners",
   },
   {
     id: 7,
@@ -54,5 +60,6 @@ module.exports = [
     email: "natasha@example.com",
     password: "password123",
     role: "user",
+    favourite_drink: "Bloody Mary",
   },
 ];
