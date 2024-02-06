@@ -11,6 +11,8 @@ exports.up = function (knex) {
     table.string("password").notNullable();
     table.string("favourite_drink").notNullable();
     table.string("role");
+    table.decimal("latitude", 10, 6);
+    table.decimal("longitude", 10, 6);
   });
 };
 

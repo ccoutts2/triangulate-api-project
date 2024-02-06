@@ -3,21 +3,28 @@ const router = express.Router();
 const fs = require("fs");
 const cors = require("cors");
 const crypto = require("crypto");
+const knex = require("knex")(require("../knexfile"));
 
 // GET /friends
 
-router.get("/", (req, res) => {
-  const friendsFile = fs.readFileSync("./data/friends.json");
-  const friends = JSON.parse(friendsFile);
+router.get("/", async (req, res) => {
+  try {
+    const usersData = await knex("user");
+    console.log(usersData);
 
-  const friendsList = friends.map((friend) => ({
-    id: friend.id,
-    name: friend.name,
-    homeAddress: friend.homeAddress,
-    favouriteDrink: friend.favouriteDrink,
-  }));
+    const formattedUsersData = usersData.map((user) => ({
+      id: user.id,
+      user_name: user.user_name,
+      address: user.address,
+      favourite_drink: user.favourite_drink,
+      latitude: user.latitude,
+      longitude: user.longitude,
+    }));
 
-  res.json(friendsList);
+    res.status(200).json(formattedUsersData);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

@@ -7,6 +7,8 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Gavi",
+    latitude: 51.51189,
+    longitude: -0.05947,
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Neck Oil",
+    latitude: 51.5542,
+    longitude: -0.1065,
   },
   {
     id: 3,
@@ -25,6 +29,8 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Amstel",
+    latitude: 51.50697,
+    longitude: -0.09251,
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Buckfast",
+    latitude: 51.5449,
+    longitude: -0.087,
   },
   {
     id: 5,
@@ -43,6 +51,8 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Doombar",
+    latitude: 51.5342,
+    longitude: -0.1034,
   },
   {
     id: 6,
@@ -52,6 +62,8 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Magners",
+    latitude: 51.5569,
+    longitude: -0.0868,
   },
   {
     id: 7,
@@ -61,5 +73,7 @@ module.exports = [
     password: "password123",
     role: "user",
     favourite_drink: "Bloody Mary",
+    latitude: 51.5305,
+    longitude: -0.0847,
   },
 ];
