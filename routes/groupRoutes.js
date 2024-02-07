@@ -42,9 +42,9 @@ router.get("/pubs/:groupId", async (req, res) => {
         "pub_group.group_id": requestedGroupId,
       })
       .join("pubs", "pub_group.pubs_id", "pubs.id")
-      .select("pubs.pub");
+      .select("*");
 
-    res.json(pubsInGroup.length);
+    res.json(pubsInGroup);
   } catch (error) {
     res.status(500).json({ message: "Can't fetch list of pubs" });
   }
@@ -52,14 +52,60 @@ router.get("/pubs/:groupId", async (req, res) => {
 
 // Create a new group
 
-// router.post("/groups", async (req, res) => {
-//     try {
-//         const newGroupId = await knex("group").7insert({
-//             ...req.body,
-//         });
-//         const newGroup = await knex
+router.post("/groups", async (req, res) => {
+  try {
+    const newGroupId = await knex("group").insert({
+      ...req.body,
+    });
 
-//     }
-// })
+    // Get the new group
+
+    const newGroup = await knex("group").where({ id: newGroupId[0] }).first();
+
+    // await knex("user_group").insert({
+    //   user_id: req.token.id,
+    //   group_id: newGroupId[0],
+    // });
+
+    res.status(201).json(newGroup);
+  } catch (error) {
+    res.status(500).json({ message: "Can't create group" });
+  }
+});
+
+// Add user to a group
+
+router.post("/:groupId/add", async (req, res) => {
+  const requestedGroupId = req.params.groupId;
+  const requestedUserId = req.body.user_id;
+
+  try {
+    const user = await knex("user").where({ id: requestedUserId }).first();
+
+    console.log(requestedGroupId);
+    console.log(requestedUserId);
+
+    // const isInGroup = await knex("user_group")
+    //   .where({
+    //     user_id: user.id,
+    //     group_id: requestedGroupId,
+    //   })
+    //   .first();
+
+    // if (isInGroup) {
+    //   res.status(400).json({ message: "User is already in this group!" });
+    //   return;
+    // }
+
+    await knex("user_group").insert({
+      user_id: requestedUserId,
+      group_id: requestedGroupId,
+    });
+
+    res.status(201).json({ success: true });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;
