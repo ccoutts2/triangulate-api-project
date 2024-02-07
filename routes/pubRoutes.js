@@ -1,8 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
-const cors = require("cors");
-const crypto = require("crypto");
 const axios = require("axios");
 const knex = require("knex")(require("../knexfile"));
 

@@ -1,16 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
-const cors = require("cors");
-const crypto = require("crypto");
 const knex = require("knex")(require("../knexfile"));
+const axios = require("axios");
 
 // GET /friends
 
 router.get("/", async (req, res) => {
   try {
     const usersData = await knex("user");
-    console.log(usersData);
 
     const formattedUsersData = usersData.map((user) => ({
       id: user.id,

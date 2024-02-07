@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const knex = require("knex")(require("../knexfile"));
+const axios = require("axios");
 
 router.post("/signup", async (req, res) => {
   const { user_name, address, email, favourite_drink, password } = req.body;
@@ -13,11 +14,37 @@ router.post("/signup", async (req, res) => {
 
   const hashedPassword = bcrypt.hashSync(password.toString(), 6);
 
+  const geoForwardUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+  const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
+  let findCoordinates = [];
+
+  const geocodeAddress = async () => {
+    try {
+      const { data } = await axios.get(
+        `${geoForwardUrl}${encodeURIComponent(
+          req.body.address
+        )}.json?access_token=${accessToken}`
+      );
+
+      console.log(req.body.address);
+      const coordinates = data.features[0].geometry.coordinates;
+      console.log(coordinates);
+      findCoordinates = [coordinates[0], coordinates[1]];
+    } catch (error) {
+      console.error(`Error geocoding: ${error.message}`);
+    }
+  };
+
+  const foundAddress = await geocodeAddress();
+  console.log(foundAddress);
+
   const newUser = {
     user_name,
     address,
     email,
     favourite_drink,
+    latitude: findCoordinates[1],
+    longitude: findCoordinates[0],
     role: "user",
     password: hashedPassword,
   };
