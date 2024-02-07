@@ -10,6 +10,8 @@ const friendRoutes = require("./routes/friendRoutes");
 
 const userRoutes = require("./routes/userRoutes");
 
+const groupRoutes = require("./routes/groupRoutes");
+
 const app = express();
 
 app.use(cors());
@@ -25,6 +27,7 @@ app.use((req, res, next) => {
 app.use("/pubs", pubRoutes);
 app.use("/friends", friendRoutes);
 app.use("/api/users", userRoutes);
+app.use("/", groupRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server started on ${BACKEND_URL}${PORT}`);
