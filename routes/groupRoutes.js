@@ -31,4 +31,35 @@ router.get("/users/:groupId", async (req, res) => {
   }
 });
 
+// GET pubs in a group
+
+router.get("/pubs/:groupId", async (req, res) => {
+  const requestedGroupId = req.params.groupId;
+
+  try {
+    const pubsInGroup = await knex("pub_group")
+      .where({
+        "pub_group.group_id": requestedGroupId,
+      })
+      .join("pubs", "pub_group.pubs_id", "pubs.id")
+      .select("pubs.pub");
+
+    res.json(pubsInGroup.length);
+  } catch (error) {
+    res.status(500).json({ message: "Can't fetch list of pubs" });
+  }
+});
+
+// Create a new group
+
+// router.post("/groups", async (req, res) => {
+//     try {
+//         const newGroupId = await knex("group").7insert({
+//             ...req.body,
+//         });
+//         const newGroup = await knex
+
+//     }
+// })
+
 module.exports = router;
