@@ -33,7 +33,7 @@ router.get("/users/:groupId", async (req, res) => {
 
 // GET pubs in a group
 
-router.get("/pubs/:groupId", async (req, res) => {
+router.get("/meet/:groupId/pubs", async (req, res) => {
   const requestedGroupId = req.params.groupId;
 
   try {
@@ -44,7 +44,25 @@ router.get("/pubs/:groupId", async (req, res) => {
       .join("pubs", "pub_group.pubs_id", "pubs.id")
       .select("*");
 
-    res.json(pubsInGroup);
+    let pubsGeo = { type: "FeatureCollection" };
+    pubsGeo.features = [];
+
+    pubsInGroup.forEach((pub) => {
+      const feature = {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [pub.longitude, pub.latitude] },
+        properties: {
+          id: pub.id,
+          pub: pub.pub,
+          address: pub.address,
+          rating: pub.rating,
+        },
+      };
+
+      pubsGeo.features.push(feature);
+    });
+
+    res.json(pubsGeo);
   } catch (error) {
     res.status(500).json({ message: "Can't fetch list of pubs" });
   }
