@@ -55,6 +55,14 @@ router.post("/", async (req, res) => {
 
   const foundAddress = await geocodeAddress();
 
+  const groupName = req.body.group;
+
+  const group = await knex("group").where({ id: groupName }).first();
+
+  if (!group) {
+    return res.status(400).send("Group not found");
+  }
+
   const insertedPub = await knex("pubs").insert({
     pub: req.body.pub,
     address: req.body.address,
@@ -62,6 +70,13 @@ router.post("/", async (req, res) => {
     longitude: findCoordinates[0],
     rating: req.body.rating,
   });
+
+  const insertedPubGroup = await knex("pub_group").insert({
+    pubs_id: insertedPub[0],
+    group_id: group.id,
+  });
+
+  console.log(insertedPub);
 
   const newPub = {
     type: "Feature",

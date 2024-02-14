@@ -23,7 +23,12 @@ router.get("/users/:groupId", async (req, res) => {
     const usersInGroup = await knex("user_group")
       .where({ "user_group.group_id": requestedGroupId })
       .join("user", "user_group.user_id", "user.id")
-      .select("user.user_name");
+      .select(
+        "user.user_name",
+        "user.latitude",
+        "user.longitude",
+        "favourite_drink"
+      );
 
     res.json(usersInGroup);
   } catch (error) {
@@ -93,7 +98,7 @@ router.post("/groups", async (req, res) => {
 
 // Add user to a group
 
-router.post("/:groupId/add", async (req, res) => {
+router.post("/groups/:groupId/add", async (req, res) => {
   const requestedGroupId = req.params.groupId;
   const requestedUserId = req.body.user_id;
 
@@ -103,17 +108,17 @@ router.post("/:groupId/add", async (req, res) => {
     console.log(requestedGroupId);
     console.log(requestedUserId);
 
-    // const isInGroup = await knex("user_group")
-    //   .where({
-    //     user_id: user.id,
-    //     group_id: requestedGroupId,
-    //   })
-    //   .first();
+    const isInGroup = await knex("user_group")
+      .where({
+        user_id: user.id,
+        group_id: requestedGroupId,
+      })
+      .first();
 
-    // if (isInGroup) {
-    //   res.status(400).json({ message: "User is already in this group!" });
-    //   return;
-    // }
+    if (isInGroup) {
+      res.status(400).json({ message: "User is already in this group!" });
+      return;
+    }
 
     await knex("user_group").insert({
       user_id: requestedUserId,
