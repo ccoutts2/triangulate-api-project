@@ -109,4 +109,23 @@ router.get("/add-pub", async (req, res) => {
   }
 });
 
+router.get("/profile", async (req, res) => {
+  if (!req.headers.authorization) {
+    return res.status(401).send("Please login");
+  }
+
+  const authHeader = req.headers.authorization;
+  const authToken = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(authToken, process.env.JWT_SECRET);
+
+    const user = await knex("user").where({ id: decoded.id }).first();
+
+    res.json(user);
+  } catch (error) {
+    return res.status(401).send("Invalid auth token");
+  }
+});
+
 module.exports = router;

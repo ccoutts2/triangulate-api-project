@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const knex = require("knex")(require("../knexfile"));
+const jwt = require("jsonwebtoken");
 
 // GET groups
 
@@ -11,6 +12,25 @@ router.get("/groups", async (req, res) => {
     res.json(groups);
   } catch (error) {
     res.status(500).json({ message: "Can't fetch list of groups" });
+  }
+});
+
+// Get details about group
+
+router.get("/groups/:groupId", async (req, res) => {
+  const requestedGroupId = req.params.groupId;
+
+  try {
+    const groupDetails = await knex("group").where({ id: requestedGroupId }).first();
+
+    if (!groupDetails) {
+      res.status(404).json({ message: "Group not found" });
+      return;
+    }
+
+    res.json(groupDetails);
+  } catch (error) {
+    res.status(500).json({ message: "Can't fetch details of this group" });
   }
 });
 
@@ -33,6 +53,22 @@ router.get("/users/:groupId", async (req, res) => {
     res.json(usersInGroup);
   } catch (error) {
     res.status(500).json({ message: "Can't fetch list of users" });
+  }
+});
+
+// Get groups a user in is
+
+router.get("/users/groups/:userId", async (req, res) => {
+  const requestedUserId = req.params.userId;
+
+  try {
+    const userInGroups = await knex("user_group")
+      .where({ "user_group.user_id": requestedUserId })
+      .join("group", "user_group.group_id", "group.id")
+      .select("group.group_name");
+    res.json(userInGroups);
+  } catch (error) {
+    res.status(500).json({ message: "Can't fetch groups of user" });
   }
 });
 
@@ -85,11 +121,6 @@ router.post("/groups", async (req, res) => {
 
     const newGroup = await knex("group").where({ id: newGroupId[0] }).first();
 
-    // await knex("user_group").insert({
-    //   user_id: req.token.id,
-    //   group_id: newGroupId[0],
-    // });
-
     res.status(201).json(newGroup);
   } catch (error) {
     res.status(500).json({ message: "Can't create group" });
@@ -100,34 +131,43 @@ router.post("/groups", async (req, res) => {
 
 router.post("/groups/:groupId/add", async (req, res) => {
   const requestedGroupId = req.params.groupId;
-  const requestedUserId = req.body.user_id;
+
+  if (!req.headers.authorization) {
+    return res.status(401).json({ message: "Please log in" });
+  }
+
+  const authHeader = req.headers.authorization;
+  const authToken = authHeader.split(" ")[1];
 
   try {
-    const user = await knex("user").where({ id: requestedUserId }).first();
+    const decoded = jwt.verify(authToken, process.env.JWT_SECRET);
 
-    console.log(requestedGroupId);
-    console.log(requestedUserId);
+    if (decoded.id === req.body.user_id) {
+      return res.status(400).json({ message: "Cannot add yourself to the group" });
+    }
 
+    // Check if the user is already in the group
     const isInGroup = await knex("user_group")
       .where({
-        user_id: user.id,
+        user_id: decoded.id,
         group_id: requestedGroupId,
       })
       .first();
 
     if (isInGroup) {
-      res.status(400).json({ message: "User is already in this group!" });
-      return;
+      return res.status(400).json({ message: "User is already in this group!" });
     }
 
+    // Add the user to the group
     await knex("user_group").insert({
-      user_id: requestedUserId,
+      user_id: decoded.id,
       group_id: requestedGroupId,
     });
 
     res.status(201).json({ success: true });
   } catch (error) {
     console.log(error);
+    res.status(400).json({ message: "Invalid auth token" });
   }
 });
 
