@@ -65,7 +65,7 @@ router.get("/users/groups/:userId", async (req, res) => {
     const userInGroups = await knex("user_group")
       .where({ "user_group.user_id": requestedUserId })
       .join("group", "user_group.group_id", "group.id")
-      .select("group.group_name");
+      .select("group.group_name", "group.id");
     res.json(userInGroups);
   } catch (error) {
     res.status(500).json({ message: "Can't fetch groups of user" });
